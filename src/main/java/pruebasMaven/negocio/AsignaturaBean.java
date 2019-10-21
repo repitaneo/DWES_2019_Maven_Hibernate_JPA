@@ -8,31 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="alumno")
-public class AlumnoBean {
+@Table(name="asignatura")
+public class AsignaturaBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
 	private long id;
 
-	@Column(name="nombre")
-	private String nombre;
-	
-	@Column(name="telefono")
-	private String telefono;
-	
 	@Column
-	private String ciudad;
+	private String nombre;
+
 	
 	
 	
-	public String getCiudad() {
-		return ciudad;
-	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
+
 	public long getId() {
 		return id;
 	}
@@ -45,11 +35,6 @@ public class AlumnoBean {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
+
 	
 }

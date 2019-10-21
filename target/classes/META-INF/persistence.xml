@@ -12,12 +12,12 @@
   	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- Clase que vamos a referenciar (paquete y nombre sin .java o .class EJEMPLO -->
-    <class>pruebasMaven.negocio.AlumnoBean</class>
+    <!--<class>pruebasMaven.negocio.AlumnoBean</class>-->
 
     <properties>
       <!-- Depende del tipo de base de datos que queramos conectar -->
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-      <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test" />
       <property name="javax.persistence.jdbc.user" value="sa" />
       <property name="javax.persistence.jdbc.password" value="" />
       
