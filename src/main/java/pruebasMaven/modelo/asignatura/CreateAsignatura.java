@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import pruebasMaven.negocio.AsignaturaBean;
+import pruebasMaven.util.Connection;
 
 
 
@@ -12,15 +13,11 @@ public class CreateAsignatura {
 
 	public void create(AsignaturaBean asignatura) {
 		
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.marcos.pruebasMaven.H2");
-		EntityManager entityManager = emf.createEntityManager();
+		EntityManager entityManager = Connection.getEntityManager();
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(asignatura);
 		entityManager.getTransaction().commit();
-		entityManager.close();
-
 	}
 
 }

@@ -11,9 +11,11 @@
     <!-- Framework proveedor del servicio de acceso a los datos -->
   	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
-    <!-- Clase que vamos a referenciar (paquete y nombre sin .java o .class EJEMPLO -->
-    <!--<class>pruebasMaven.negocio.AlumnoBean</class>-->
-
+    <!-- Clase que vamos a referenciar (paquete y nombre sin .java o .class EJEMPLO 
+    <class>pruebasMaven.negocio.AlumnoBean</class>
+	<class>pruebasMaven.negocio.AsignaturaBean</class>
+	-->
+	
     <properties>
       <!-- Depende del tipo de base de datos que queramos conectar -->
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
@@ -28,7 +30,7 @@
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
       
       <!-- Que hace Hibernate cuando no encuentra las tablas en a base de datos -->
-      <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hibernate.hbm2ddl.auto" value="create" />
       
       <!--  
       	<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
