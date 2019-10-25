@@ -4,14 +4,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import pruebasMaven.negocio.AlumnoBean;
+
 public class Connection {
 
 	private static EntityManager entityManager = null;
 	
 	private Connection() {
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.marcos.pruebasMaven.H2");
-		entityManager = emf.createEntityManager();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("com.marcos.pruebasMaven.H2");
+		entityManager = entityManagerFactory.createEntityManager();
 	}
 	
 	

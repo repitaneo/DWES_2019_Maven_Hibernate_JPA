@@ -11,8 +11,9 @@ public class ReadAsignatura {
 	public static AsignaturaBean getAsignatura(long id) {
 		
 		EntityManager entityManager = Connection.getEntityManager();
-
-		return entityManager.find(AsignaturaBean.class, id);
+		AsignaturaBean buscada = entityManager.find(AsignaturaBean.class, id);
+		
+		return buscada;
 	}
 	
 

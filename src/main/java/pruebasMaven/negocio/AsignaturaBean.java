@@ -3,15 +3,16 @@ package pruebasMaven.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,22 +29,38 @@ public class AsignaturaBean {
 	private String nombre;
 
 	
-	@OneToMany(mappedBy = "asignatura")
+	@ManyToMany(mappedBy = "asignaturas", cascade = CascadeType.ALL)
 	private List<AlumnoBean> alumnos = new ArrayList<AlumnoBean>();
 	
 
+	@ManyToOne
+	private ProfesorBean profesor;
+	
+	
 	
 	public void addAlumno(AlumnoBean alumno) {
 		
 		if(!alumnos.contains(alumno)) {
 			
 			alumnos.add(alumno);
-			alumno.setAsignatura(this);
+			
+			// decirle al alumno que añada esta asignatura
+			List<AsignaturaBean> asignaturas = alumno.getAsignaturas();
+			if(!asignaturas.contains(this)) {
+				
+				asignaturas.add(this);
+			}
 		}
 	}
 	
 
 
+	public ProfesorBean getProfesor() {
+		return profesor;
+	}
+	public void setProfesor(ProfesorBean profesor) {
+		this.profesor = profesor;
+	}
 	public List<AlumnoBean> getAlumnos() {
 		return alumnos;
 	}

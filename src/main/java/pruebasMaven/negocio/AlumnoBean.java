@@ -1,17 +1,17 @@
 package pruebasMaven.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,9 +35,8 @@ public class AlumnoBean {
 	private String ciudad;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="FK_asignatura")
-	private AsignaturaBean asignatura;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<AsignaturaBean> asignaturas = new ArrayList<AsignaturaBean>();
 	
 	
 	
@@ -46,11 +45,12 @@ public class AlumnoBean {
 	
 	
 	
-	public AsignaturaBean getAsignatura() {
-		return asignatura;
+
+	public List<AsignaturaBean> getAsignaturas() {
+		return asignaturas;
 	}
-	public void setAsignatura(AsignaturaBean asignatura) {
-		this.asignatura = asignatura;
+	public void setAsignaturas(List<AsignaturaBean> asignaturas) {
+		this.asignaturas = asignaturas;
 	}
 	public String getCiudad() {
 		return ciudad;
@@ -80,7 +80,7 @@ public class AlumnoBean {
 	@Override
 	public String toString() {
 		return "AlumnoBean [idAlumno=" + idAlumno + ", nombre=" + nombre + ", telefono=" + telefono + ", ciudad="
-				+ ciudad + ", asignatura=" + asignatura + "]";
+				+ ciudad  + "]";
 	}
 
 	

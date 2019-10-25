@@ -8,15 +8,20 @@ import pruebasMaven.modelo.alumno.CreateAlumno;
 import pruebasMaven.modelo.alumno.DeleteAlumno;
 import pruebasMaven.modelo.asignatura.CreateAsignatura;
 import pruebasMaven.modelo.asignatura.ReadAsignatura;
+import pruebasMaven.modelo.profesor.CreateProfesor;
 import pruebasMaven.negocio.AlumnoBean;
 import pruebasMaven.negocio.AsignaturaBean;
+import pruebasMaven.negocio.ProfesorBean;
 import pruebasMaven.util.Connection;
 
 public class Start {
 
 	public static void main(String[] args) {
 		
-
+		ProfesorBean monica = new ProfesorBean();
+		monica.setNombre("Monica");
+		
+		
 		AsignaturaBean lengua = new AsignaturaBean();
 		lengua.setNombre("lengua");
 		
@@ -44,8 +49,22 @@ public class Start {
 		marcos.setTelefono("666555444");
 
 		
+		monica.addAsignatura(lengua);
+		monica.addAsignatura(filosofia);
+		
+		
 		filosofia.addAlumno(marcos);
 		filosofia.addAlumno(maria);
+		
+		
+	
+		CreateProfesor createProfesor = new CreateProfesor();
+		createProfesor.create(monica);		
+		
+		
+		CreateAlumno createAlumno = new CreateAlumno();
+		createAlumno.create(marcos);
+		createAlumno.create(maria);
 		
 		
 		CreateAsignatura createAsignatura = new CreateAsignatura();
@@ -55,16 +74,8 @@ public class Start {
 		createAsignatura.create(filosofia);
 		
 		
-		CreateAlumno createAlumno = new CreateAlumno();
-		createAlumno.create(marcos);
-		createAlumno.create(maria);
 
-		
-		AsignaturaBean nueva = Connection.getEntityManager().find(AsignaturaBean.class, 4L);
-		System.out.println(nueva);
-		
-		Connection.getEntityManager().close();
-		
+	
 		
 	}
 
