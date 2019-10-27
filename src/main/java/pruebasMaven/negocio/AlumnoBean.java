@@ -14,6 +14,12 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+
+/**
+ * Bean de tipo DAO para el Alumno
+ * @author marcos
+ *
+ */
 @Entity
 @Table(name="alumno")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -34,7 +40,7 @@ public class AlumnoBean {
 	@Column
 	private String ciudad;
 	
-	
+	// Un alumno cursa muchas asignaturas
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<AsignaturaBean> asignaturas = new ArrayList<AsignaturaBean>();
 	

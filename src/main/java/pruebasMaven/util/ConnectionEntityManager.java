@@ -6,11 +6,11 @@ import javax.persistence.Persistence;
 
 import pruebasMaven.negocio.AlumnoBean;
 
-public class Connection {
+public class ConnectionEntityManager {
 
 	private static EntityManager entityManager = null;
 	
-	private Connection() {
+	private ConnectionEntityManager() {
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("com.marcos.pruebasMaven.H2");
 		entityManager = entityManagerFactory.createEntityManager();
@@ -21,7 +21,7 @@ public class Connection {
 		
 		if(entityManager==null) {
 			
-			new Connection();
+			new ConnectionEntityManager();
 		}
 		return entityManager;
 	}

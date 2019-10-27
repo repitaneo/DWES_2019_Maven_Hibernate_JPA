@@ -12,12 +12,18 @@ import pruebasMaven.modelo.profesor.CreateProfesor;
 import pruebasMaven.negocio.AlumnoBean;
 import pruebasMaven.negocio.AsignaturaBean;
 import pruebasMaven.negocio.ProfesorBean;
-import pruebasMaven.util.Connection;
+import pruebasMaven.util.ConnectionEntityManager;
 
 public class Start {
 
 	public static void main(String[] args) {
 		
+		
+		/*
+		 * ********************************
+		 * C R E A N D O    O B J E T O S
+		 * ********************************
+		 */
 		ProfesorBean monica = new ProfesorBean();
 		monica.setNombre("Monica");
 		
@@ -49,32 +55,50 @@ public class Start {
 		marcos.setTelefono("666555444");
 
 		
+		
+		
+		/*
+		 * **************************************************
+		 * A Ñ A D I E N D O    I N F O R M A C I Ó N
+		 * **************************************************
+		 */		
 		monica.addAsignatura(lengua);
 		monica.addAsignatura(filosofia);
+		monica.addAsignatura(mates);
+		monica.addAsignatura(historia);
 		
 		
 		filosofia.addAlumno(marcos);
 		filosofia.addAlumno(maria);
 		
 		
+		
+		
+		
+		/*
+		 * **************************************************
+		 * P E R S I S T I E N D O    L O S     D A T O S
+		 * **************************************************
+		 */			
 	
 		CreateProfesor createProfesor = new CreateProfesor();
 		createProfesor.create(monica);		
 		
 		
-		CreateAlumno createAlumno = new CreateAlumno();
-		createAlumno.create(marcos);
-		createAlumno.create(maria);
-		
 		
 		CreateAsignatura createAsignatura = new CreateAsignatura();
+		// Esta persistencia da una excepción ¿Por qué?
 		createAsignatura.create(lengua);
+		
+		// Esto ya no se ejecuta por la excepción anterior
 		createAsignatura.create(mates);
 		createAsignatura.create(historia);
 		createAsignatura.create(filosofia);
 		
 		
-
+		CreateAlumno createAlumno = new CreateAlumno();
+		createAlumno.create(marcos);
+		createAlumno.create(maria);
 	
 		
 	}

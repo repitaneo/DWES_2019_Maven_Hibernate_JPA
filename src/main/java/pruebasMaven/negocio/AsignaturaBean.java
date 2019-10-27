@@ -15,6 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+/**
+ * Bean de tipo DAO para el la asignatura
+ * @author marcos
+ *
+ */
 @Entity
 @Table(name="asignatura")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -29,15 +35,20 @@ public class AsignaturaBean {
 	private String nombre;
 
 	
+	// Una asignatura para muchos alumnos
 	@ManyToMany(mappedBy = "asignaturas", cascade = CascadeType.ALL)
 	private List<AlumnoBean> alumnos = new ArrayList<AlumnoBean>();
 	
 
+	// Una asignatura solo la imparte un profesor
 	@ManyToOne
 	private ProfesorBean profesor;
 	
 	
-	
+	/**
+	 * Operación que permite añadir alumnos a la asignatuta y esta asignatura a la lista de alumnos
+	 * @param alumno
+	 */
 	public void addAlumno(AlumnoBean alumno) {
 		
 		if(!alumnos.contains(alumno)) {

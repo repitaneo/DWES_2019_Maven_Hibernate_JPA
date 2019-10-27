@@ -15,6 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+/**
+ * Bean de tipo DAO para el Profesor
+ * @author marcos
+ *
+ */
 @Entity
 @Table(name="profesorado")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -30,17 +36,22 @@ public class ProfesorBean {
 
 
 
-
+	// Un profesor imparte muchas asignaturas
 	@OneToMany(mappedBy="profesor", cascade = CascadeType.ALL)
 	private List<AsignaturaBean> asignaturas = new ArrayList<AsignaturaBean>();
 	
 	
 	
+	/**
+	 * Operación que permite añadir a un profesor sus asignaturas
+	 * @param asignatura
+	 */
 	public void addAsignatura(AsignaturaBean asignatura) {
 		
 		if(!asignaturas.contains(asignatura)) {
 			
 			asignaturas.add(asignatura);
+			// dejamos vinculada a la asignatura que añadimos este profesor (this)
 			asignatura.setProfesor(this);
 		}
 	}
@@ -64,17 +75,5 @@ public class ProfesorBean {
 	public void setAsignaturas(List<AsignaturaBean> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
 	
 }
