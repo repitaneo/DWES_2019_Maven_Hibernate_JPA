@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="profesorado")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class ProfesorBean {
-
+//
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
